@@ -1,6 +1,6 @@
 # Requirements
 
-- [x] Set Favorite and Checked (based temp file) on Local Checklist.
+- [x] Set Favorite and Checked (based temp files) on Local Checklist.
 - [ ] Get info from Local Checklist.
 - [ ] Sync Recurbate list with Local Checklist.
 - [ ] WriteCache UnChecked and Favorites.
