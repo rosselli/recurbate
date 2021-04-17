@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const urls = require('../urls');
+const urls = require('./urls');
 
 const deleteProperties = (properties, data) => {
 	properties.map(item => delete data[item])
