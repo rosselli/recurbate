@@ -6,7 +6,7 @@ const allPerformers = files.readJSON(allPerformersFile);
 const male = files.readJSON('./data/all-performers-male.json');
 const trans = files.readJSON('./data/all-performers-trans.json');
 const subscriptions = files.readJSON('./data/all-performers-subscriptions.json');
-const favorites = files.readJSON('./data/all-performers-favorites.json');
+const favorites = files.readJSON('./data/all-performers-favorites-manually.json');
 const manually = files.readJSON('./data/all-performers-rejected-manually.json');
 
 const reject = (name, checked, status) => {
