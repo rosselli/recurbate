@@ -9,7 +9,7 @@ const files = {
 	},
 	writeJSON: (data, filename) => {
 		const file = path.resolve(filename);
-		fs.writeFile(file, JSON.stringify(data), (error) => error && console.log(error.message));
+		fs.writeFile(file, JSON.stringify(data, null, '\t'), (error) => error && console.log(error.message));
 	},
 }
 
