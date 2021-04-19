@@ -1,8 +1,9 @@
 /temp/
 /src/data/blacklist.json
+/src/data/favorites.json
 /src/data/recent.json
 /src/data/all-performers-couples.json
-/src/data/all-performers-favorites.json
+/src/data/all-performers-favorites-manually.json
 /src/data/all-performers-male.json
 /src/data/all-performers-rejected-manually.json
 /src/data/all-performers-subscriptions.json
