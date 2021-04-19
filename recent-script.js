@@ -43,7 +43,7 @@ const listCard = (data) => {
 
 
 
-fetch('./src/data/recent.json')
+fetch('src/data/recent.json')
 	.then(response => response.json())
 	.then(data => listCard(data));
 
