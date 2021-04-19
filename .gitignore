@@ -1,3 +1,9 @@
 /temp/
-/src/data/blacklist.js
+/src/data/blacklist.json
 /src/data/recent.json
+/src/data/all-performers-couples.json
+/src/data/all-performers-favorites.json
+/src/data/all-performers-male.json
+/src/data/all-performers-rejected-manually.json
+/src/data/all-performers-subscriptions.json
+/src/data/all-performers-trans.json
