@@ -26,7 +26,7 @@ const run = (performer, pages) => {
 	});
 }
 
-if (validateParameters.checklist(2, 'checklist')) {
+if (validateParameters.pages(2, 'checklist')) {
 	const pages = parseInt(process.argv[2]) || 2;
 	performers().map(performer => run(performer, pages));
 }

@@ -1,8 +1,8 @@
 const chalk = require('chalk');
 
 const showCommands = {
-	recent: chalk.cyan('node cli-recent ' + chalk.yellow('99')),
-	checklist: chalk.cyan('node cli-checklist ' + chalk.yellow('99'))
+	recent: chalk.cyan('node get-recent-recordings ' + chalk.yellow('99')),
+	checklist: chalk.cyan('node create-items-checklist ' + chalk.yellow('99'))
 }
 
 const validations = {
@@ -30,7 +30,4 @@ const error = (message, command) => {
 	process.exit(1);
 }
 
-module.exports = {
-	recent: (parameterPosition, command) => validations.pages(parameterPosition, command),
-	checklist: (parameterPosition, command) => validations.pages(parameterPosition, command)
-}
+module.exports = validations;

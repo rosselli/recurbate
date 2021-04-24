@@ -17,7 +17,7 @@ const run = (performer, pages) => {
 	});
 }
 
-if (validateParameters.checklist(2, 3, 'checklist')) {
+if (validateParameters.performersPages(2, 3,'checklist')) {
 	const performer = process.argv[2];
 	const pages = parseInt(process.argv[3]);
 	run(performer, pages);
