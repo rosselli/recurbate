@@ -11,6 +11,7 @@ const files = {
 		const file = path.resolve(filename);
 		fs.writeFile(file, JSON.stringify(data, null, '\t'), (error) => error && console.log(error.message));
 	},
+	removeHiddenFiles: (list) => list.filter(item => (!item.startsWith('.')) && item),
 }
 
 module.exports = files;

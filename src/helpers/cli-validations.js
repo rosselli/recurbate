@@ -2,7 +2,7 @@ const chalk = require('chalk');
 
 const showCommands = {
 	recent: chalk.cyan('node cli-recent ' + chalk.yellow('99')),
-	checklist: chalk.cyan('node cli-checklist ' + chalk.yellow('performer') + ' ' + chalk.yellow('99'))
+	checklist: chalk.cyan('node cli-checklist ' + chalk.yellow('99'))
 }
 
 const validations = {
@@ -21,7 +21,6 @@ const validations = {
 			if (length > 3) { error('\npages must have 3 digits max.', command) }
 			return true;
 		} else { error('\npages parameter is missing.', command) }
-
 	}
 }
 
@@ -31,9 +30,7 @@ const error = (message, command) => {
 	process.exit(1);
 }
 
-const validate = {
+module.exports = {
 	recent: (parameterPosition, command) => validations.pages(parameterPosition, command),
-	checklist: (first, second, command) => validations.performersPages(first, second, command)
+	checklist: (parameterPosition, command) => validations.pages(parameterPosition, command)
 }
-
-module.exports = validate;
