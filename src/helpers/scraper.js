@@ -3,5 +3,5 @@ const extractor = require("./extractors");
 
 const scraper = (url) => axios.get(url)
 	.then(res => extractor(res.data))
-	.catch(err => console.log(err.message));
+	.catch(err => console.log(err.message, url));
 module.exports = scraper;
