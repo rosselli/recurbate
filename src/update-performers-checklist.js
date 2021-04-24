@@ -2,7 +2,7 @@ const files = require('./helpers/files');
 const urls = require('./helpers/urls');
 const scraper = require('./helpers/scraper');
 const validateParameters = require('./helpers/cli-validations');
-const performers = require('./helpers/get-checklists');
+const performers = require('./helpers/get-performers');
 
 const run = (performer, pages) => {
 	const performerChecklist = '/Users/rosselli/systems/2021.04/local/checklist-notes-data/porn/cams/recurbate/checklists/checklist-'+ performer +'.json';
