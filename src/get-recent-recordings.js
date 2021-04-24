@@ -2,7 +2,7 @@ const file = require('./helpers/files');
 const urls = require('./helpers/urls');
 const scraper = require('./helpers/scraper')
 const blacklist = require('./helpers/get-blacklist')();
-const favoritelist = require('./helpers/get-favoritelist')();
+const favoritelist = require('./helpers/get-favorites')();
 const validateParameters = require('./helpers/cli-validations');
 
 const run = (pages) => {

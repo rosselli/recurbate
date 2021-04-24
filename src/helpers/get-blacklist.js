@@ -10,6 +10,5 @@ module.exports = () => {
 		if (item[3] == 'rejected-trans') blacklist.push(item[1]);
 		if (item[3] == 'rejected-manually') blacklist.push(item[1]);
 	})
-	files.writeJSON(blacklist, './data/blacklist.json');
 	return blacklist;
 }
