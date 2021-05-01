@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const request = require('request')
 
 const files = {
 	readJSON: (filename) => {
@@ -10,6 +11,17 @@ const files = {
 	writeJSON: (data, filename) => {
 		const file = path.resolve(filename);
 		fs.writeFileSync(file, JSON.stringify(data, null, '\t'), (error) => error && console.log(error.message));
+	},
+	writeText: (data, filename) => {
+		const file = path.resolve(filename);
+		fs.writeFileSync(file, data, (error) => error && console.log(error.message));
+	},
+	downloadImage: (url, path, callback) => {
+		request.head(url, (err, res, body) => {
+			request(url)
+				.pipe(fs.createWriteStream(path))
+				.on('close', callback)
+		})
 	},
 	removeHiddenFiles: (list) => list.filter(item => (!item.startsWith('.')) && item),
 }
