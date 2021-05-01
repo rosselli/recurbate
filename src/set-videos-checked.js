@@ -6,7 +6,7 @@ const performerChecklistPath = '/Users/rosselli/systems/2021.04/local/checklist-
 const performerChecklist = files.readJSON(performerChecklistPath);
 let counter = 0;
 
-downloaded.videos.map(video => {
+downloaded.items.map(video => {
 	const videoTitle = video.replace(/(_)(\d\d)(-)/, ` $2:`).replace('.mp4', '');
 	performerChecklist.items.map(item => {
 		if (item[1] == videoTitle) {
