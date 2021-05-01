@@ -1,11 +1,18 @@
+const d = document;
+const rejected = []
+const handleClick = (performer) => {
+	rejected.push(performer);
+	console.log('rejected', rejected.length, performer);
+	const thumb = d.querySelector('#thumb-' + performer);
+	thumb.style.display = 'none';
+}	
 
 const listCard = (data) => {
-	const d = document;
-	// const base = d.querySelector('#row');
 	data.map(item => {
 		const div1 = d.createElement('div');
-			div1.classList.add('card');
-			div1.classList.add('col-lg-3');
+			div1.classList.add('video-thumb');
+			div1.classList.add('col-lg-4');
+			div1.id = 'thumb-' + item.performer;
 		const aVideo = d.createElement('a')
 			aVideo.href = item.videoLink;
 
@@ -16,32 +23,28 @@ const listCard = (data) => {
 		div1.appendChild(aVideo);
 
 		const div3 = d.createElement('div');
-			div3.classList.add('card-body');
+			div3.classList.add('video-info');
 		const h4 = d.createElement('h4');
 			h4.classList.add('card-title');
 		const aPerformer = d.createElement('a')
 			aPerformer.href = item.performerLink;
 			aPerformer.textContent = item.performer;
+		const div4 = d.createElement('div');
+		const removeButton = d.createElement('button');
+		removeButton.id = item.performer;
+		removeButton.textContent = 'REMOVE'
+		removeButton.classList.add('btn');
+		removeButton.classList.add('btn-warning');
+		removeButton.classList.add('btn-xs');
+		removeButton.onclick = () => handleClick(item.performer);
 		h4.appendChild(aPerformer);
+		div4.appendChild(removeButton);
+		h4.appendChild(div4);
 		div3.appendChild(h4);
 		div1.appendChild(div3);
 		d.querySelector('#row').appendChild(div1);
 	});
-
 }
-
-// <div className="card col-lg-3">
-// 	<a href="https://recurbate.com/play.php?video=4575392">
-// 		<div className="video-splash"
-// 			 style="background-image: url('https://v01.frontgross.com/xkinkytinypussy4ux/2021-04-17,04-54.jpg?md5=pZXFP-paj6rxJVO_5BnR4Q&expires=1619352000&origin=104&mid=5b35ce86-3cb3-4f80-97c2-059f5cd667a4&akey=&p=2000')"></div>
-// 	</a>
-// 	<div className="card-body">
-// 		<h4 className="card-title">
-// 		<a href="https://recurbate.com/performer/elizka_0603/">elizka_0603</a></h4>
-// 	</div>
-// </div>
-
-
 
 fetch('src/data/recent.json')
 	.then(response => response.json())
