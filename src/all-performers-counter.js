@@ -4,18 +4,12 @@ const chalk = require('chalk');
 const percentage = (counter, part) => parseInt((part/counter)*100);
 const allPerformersFile = '/Users/rosselli/systems/2021.04/local/checklist-notes-data/porn/cams/recurbate/checklists/checklist-all-performers.json';
 const allPerformers = files.readJSON(allPerformersFile).items;
-
 const counter = {
 	source: allPerformersFile,
-	favorites: 0,
-	rejected: {
-		male: 0,
-		trans: 0,
-		manually: 0,
-		total: 0
-	},
-	analyzed: 0,
 	performers: allPerformers.length,
+	analyzed: 0,
+	favorites: 0,
+	rejected: { male: 0, trans: 0, manually: 0, total: 0 },
 }
 
 allPerformers.map(item => {
@@ -26,4 +20,15 @@ allPerformers.map(item => {
 	if (item[3] != '') { counter.analyzed ++; }
 	counter.analyzedPercentage = percentage(counter.performers, counter.analyzed) + '%';
 });
-console.log(counter)
+
+const cyan = chalk.cyan;
+const yellow = chalk.yellow;
+let output = `${cyan('source:')} ${yellow(counter.source)}\n`;
+output += `${cyan('performers:')} ${yellow(counter.performers)}\n`;
+output += `${cyan('analyzed:')} ${yellow(counter.analyzedPercentage)}\n`;
+output += `${cyan('favorites:')} ${yellow(counter.favorites)}\n`;
+output += `${cyan('rejected:')} ${yellow(counter.rejected.total)}: `;
+output += `${cyan('manually')} ${yellow(counter.rejected.manually)}, `;
+output += `${cyan('male')} ${yellow(counter.rejected.male)}, `;
+output += `${cyan('trans')} ${yellow(counter.rejected.trans)}\n`;
+console.log(output);
