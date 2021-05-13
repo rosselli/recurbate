@@ -24,22 +24,37 @@ const setStatus = (name, checked, status) => {
 	}
 }
 
-const runSetStatus = () => {
-	// const male = files.readJSON('./data/from-site/all-performers-male.json');
-	// const trans = files.readJSON('./data/from-site/all-performers-trans.json');
-	// const subscriptions = files.readJSON('./data/from-site/all-performers-subscriptions.json');
-	const favorites = files.readJSON('./data/all-performers-favorites-manually.json');
-	const rejectedManually = files.readJSON('./data/all-performers-rejected-manually.json');
-	// (male.length > 0) && male.map(item => setStatus(item[1], null, 'rejected-male'));
-	// (trans.length > 0) && trans.map(item => setStatus(item[1], null, 'rejected-trans'));
-	// (subscriptions.length > 0) && subscriptions.map(item => setStatus(item[1], 'x', 'favorite'));
-	(rejectedManually.length > 0) && rejectedManually.map(item => setStatus(item, 'x', 'rejected-manually'));
-	(favorites.length > 0) && favorites.map(item => setStatus(item, 'x', 'favorite'));
-
+const reject = () => {
+	const male = files.readJSON('./data/from-site/all-performers-male.json');
+	const trans = files.readJSON('./data/from-site/all-performers-trans.json');
+	(male.length > 0) && male.map(item => setStatus(item[1], null, 'rejected-male'));
+	(trans.length > 0) && trans.map(item => setStatus(item[1], null, 'rejected-trans'));
 	files.writeJSON(allPerformers, allPerformersFile);
-	console.log(info(allPerformers));
-}	
+}
 
+const rejectManually = () => {
+	const rejectedManually = files.readJSON('./data/all-performers-rejected-manually.json');
+	(rejectedManually.length > 0) && rejectedManually.map(item => setStatus(item, 'x', 'rejected-manually'));
+	files.writeJSON(allPerformers, allPerformersFile);
+}
 
-// appendNew()
-runSetStatus();
+const subscriptions = () => {
+	const subscriptions = files.readJSON('./data/from-site/all-performers-subscriptions.json');
+	(subscriptions.length > 0) && subscriptions.map(item => setStatus(item[1], 'x', 'favorite'));
+	files.writeJSON(allPerformers, allPerformersFile);
+}
+
+const favorites = () => {
+	const favorites = files.readJSON('./data/all-performers-favorites-manually.json');
+	(favorites.length > 0) && favorites.map(item => setStatus(item, 'x', 'favorite'));
+	files.writeJSON(allPerformers, allPerformersFile);
+}
+
+process.argv[2] == undefined && console.log('The Command is missing.');
+process.argv[2] == 'append-new' && appendNew();
+process.argv[2] == 'reject' && reject();
+process.argv[2] == 'reject-manually' && rejectManually();
+process.argv[2] == 'subscriptions' && subscriptions();
+process.argv[2] == 'favorites' && favorites();
+
+console.log(info(allPerformers));
