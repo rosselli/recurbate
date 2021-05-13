@@ -20,7 +20,8 @@ const run = (pages) => {
 			const inFavoritelist = favorites.includes(item.performer);
 			const duplicate = recent.some(inRecent => inRecent.performer === item.performer);
 			duplicate && duplicated.push(item.performer) && console.log('duplicate', item.performer);
-			inBlacklist && blacklisted.push(item.performer) && console.log('blacklisted', item.performer);
+			// inBlacklist && blacklisted.push(item.performer) && console.log('blacklisted', item.performer);
+			inBlacklist && blacklisted.push(item.performer);
 			inFavoritelist && favorited.push(item.performer) && console.log('favorited', item.performer);
 			(!duplicate && !inBlacklist && !inFavoritelist) && recent.push(item)
 		});
@@ -41,4 +42,6 @@ const run = (pages) => {
 if (validateParameters.pages(2, 'recent')) {
 	const pages = parseInt(process.argv[2]);
 	run(pages);
+	const date = new Date().toLocaleString("en-UK", {timeZone: "America/Sao_Paulo"})
+	console.log(date)
 }
