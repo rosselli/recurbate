@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const request = require('request')
+const request = require('request');
 
 const files = {
 	readJSON: (filename) => {
@@ -18,9 +18,14 @@ const files = {
 	},
 	downloadImage: (url, path, callback) => {
 		request.head(url, (err, res, body) => {
-			request(url)
-				.pipe(fs.createWriteStream(path))
-				.on('close', callback)
+			try {
+				request(url)
+					.pipe(fs.createWriteStream(path))
+					.on('close', callback)
+				.on('err', () => console.log(err))
+			} catch (e) {
+				console.log(e.message)
+			}
 		})
 	},
 	removeHiddenFiles: (list) => list.filter(item => (!item.startsWith('.')) && item),
