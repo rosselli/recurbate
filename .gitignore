@@ -1,5 +1,4 @@
 /src/data/
+/storage/*
+/theme/*
 /src/img/
-/src/img-blacklist/
-/src/img-favorites/
-/src/img-storage/
