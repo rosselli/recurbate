@@ -7,7 +7,7 @@ const validateParameters = require('./helpers/cli-validations');
 const exec = require('child_process').exec
 
 const run = (pages) => {
-	exec('rm img/*.jpg');
+	exec('rm ../storage/img/*.jpg');
 	const recent = [];
 	const favorited = [];
 	const blacklisted = [];
@@ -20,7 +20,6 @@ const run = (pages) => {
 			const inFavoritelist = favorites.includes(item.performer);
 			const duplicate = recent.some(inRecent => inRecent.performer === item.performer);
 			duplicate && duplicated.push(item.performer) && console.log('duplicate', item.performer);
-			// inBlacklist && blacklisted.push(item.performer) && console.log('blacklisted', item.performer);
 			inBlacklist && blacklisted.push(item.performer);
 			inFavoritelist && favorited.push(item.performer) && console.log('favorited', item.performer);
 			(!duplicate && !inBlacklist && !inFavoritelist) && recent.push(item)
@@ -34,7 +33,7 @@ const run = (pages) => {
 			duplicated: duplicated.length,
 		});
 
-		recent.map(item => file.downloadImage(item.videoImage, './img/' + item.performer + '.jpg', () => console.log('Image of ' + item.performer + ' was downloaded.')));
+		recent.map(item => file.downloadImage(item.videoImage, '../storage/img/' + item.performer + '.jpg', () => console.log('Image of ' + item.performer + ' was downloaded.')));
 		file.writeJSON(recent, './data/recent.json');
 	});
 }
