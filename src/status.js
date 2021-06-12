@@ -18,7 +18,7 @@ performers().map(performer => {
 	}
 	list.map(item => {
 		if (item[3] == 'favorite') { total.favorites ++; total.watched ++; }
-		if (item[3] == 'deleted') { total.deleted ++; total.watched ++; }
+		if (item[3] == 'deleted' || item[3] == 'not-found') { total.deleted ++; total.watched ++; }
 		if (item[0] == '') { total.toDownload ++; }
 	})
 	total.watchedPercentage = percentage(total.videos, total.watched);
