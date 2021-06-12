@@ -21,12 +21,13 @@ performers().map(performer => {
 		if (item[3] == 'deleted' || item[3] == 'not-found') { total.deleted ++; total.watched ++; }
 		if (item[0] == '') { total.toDownload ++; }
 	})
-	total.watchedPercentage = percentage(total.videos, total.watched);
+	total.watchedPercentage = percentage(total.videos - total.toDownload, total.watched);
 	total.downloadedPercentage = percentage(total.videos, total.videos - total.toDownload);
 	counter.push(total);
 });
 
 const output = [];
+const output100 = [];
 const outputGreaterThan70 = [];
 const outputBetween70And20 = [];
 const outputLessThan20 = [];
@@ -35,10 +36,14 @@ counter.map(item => {
 	const clPerformer = chalk.cyan(item.performer);
 	const clWatchedPercentage = chalk.yellow(item.watchedPercentage + '%');
 	const clDownloadedPercentage = chalk.yellow(item.downloadedPercentage + '%');
-	const clWatched = chalk.blue('watched') + chalk.green(' (' + item.watched + ' of ' + item.videos + ')')
+	const clWatched = chalk.blue('watched') + chalk.green(' (' + item.watched + ' of ' + (item.videos - item.toDownload) + ')')
 	const clDownloaded = chalk.blue('downloaded') + chalk.green(' (' + (item.videos - item.toDownload) + ' of ' + item.videos + ')')
 
-	if (item.watchedPercentage >= 70) {
+	if (item.watchedPercentage >= 100) {
+		output100.push([clPerformer, `${clWatchedPercentage} ${clWatched}`, `${clDownloadedPercentage} ${clDownloaded}`]);
+	}
+
+	if (item.watchedPercentage >= 70 && item.watchedPercentage < 100) {
 		outputGreaterThan70.push([clPerformer, `${clWatchedPercentage} ${clWatched}`, `${clDownloadedPercentage} ${clDownloaded}`]);
 	}
 
@@ -56,6 +61,7 @@ counter.map(item => {
 });
 
 // console.log(table(output))
+console.log('100%\n', table(output100))
 console.log('Greater than 70%\n', table(outputGreaterThan70))
 console.log('Between 70% and 20%\n', table(outputBetween70And20))
 console.log('Less than 20%\n', table(outputLessThan20))
